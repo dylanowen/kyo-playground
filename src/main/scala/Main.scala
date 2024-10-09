@@ -39,11 +39,7 @@ def divideBy2(input: Int): Int < (Abort[String] & Warning) = {
   for {
     _ <- verifyEven(input)
     result <- unsafeDivideBy2(input)
-    _ <- if (input > 0) {
-      (): Unit < Warning
-    } else {
-      Warning("input is negative")
-    }
+    _ <- warnForNegative(input)
     _ <- warnForLessThanTen(input)
   } yield result
 }
